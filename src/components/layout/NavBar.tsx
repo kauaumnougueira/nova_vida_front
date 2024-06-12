@@ -58,6 +58,10 @@ const Navbar: React.FC<NavbarProps> = ({ isOpen, closeNavbar }) => {
             text: "Visualizar Membros",
             to: "/visualizar-membros",
         },
+        {
+            text: "Células",
+            to: "/celulas"
+        }
     ];
 
     return (
