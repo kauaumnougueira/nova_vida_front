@@ -1,0 +1,22 @@
+/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+    --radius: 0.25rem;
+  }
+  
+  body {
+    font-family: var(--font-dm_sans), sans-serif;
+    user-select: none;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-inter), sans-serif;
+  }
+
+  .action{
+    cursor: pointer;
+  }
