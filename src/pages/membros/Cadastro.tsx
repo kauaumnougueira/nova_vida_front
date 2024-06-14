@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -57,7 +56,11 @@ export default function Cadastro() {
         console.log("Form data", data);
     };
 
-    const [cargos, setCargos] = useState([]);
+    interface Cargo {
+        nome:string
+    }
+
+    const [cargos, setCargos] = useState<Cargo[]>([]);
 
     useEffect(() => {
         const getCargos = async () => {
