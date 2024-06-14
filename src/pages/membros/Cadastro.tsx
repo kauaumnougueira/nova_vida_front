@@ -21,6 +21,7 @@ import {
 import { useEffect, useState } from "react";
 import { getAll } from "@/services/api";
 import DatePicker from "@/components/ui/datePicker";
+import { Titulo } from "@/components/interativos/texts";
 
 const formSchema = z.object({
     nome: z.string().min(2, {
@@ -57,7 +58,7 @@ export default function Cadastro() {
     };
 
     interface Cargo {
-        nome:string
+        nome: string;
     }
 
     const [cargos, setCargos] = useState<Cargo[]>([]);
@@ -83,145 +84,155 @@ export default function Cadastro() {
 
     return (
         <Form {...form}>
-            <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="bg-gray-50 p-10 shadow-xl rounded-xl grid grid-col gap-4 w-[70%]" // Ajuste de responsividade
-            >
-                <FormField
-                    control={form.control}
-                    name="nome"
-                    render={({ field }) => (
-                        <FormItem className="col-span-1 md:col-span-1">
-                            <FormLabel>Nome</FormLabel>
-                            <FormControl>
-                                <Input
-                                    placeholder="Digite o nome"
-                                    {...field}
-                                    className="w-full"
-                                />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="endereco"
-                    render={({ field }) => (
-                        <FormItem className="col-span-1 md:col-span-1">
-                            <FormLabel>Endereço</FormLabel>
-                            <FormControl>
-                                <Input
-                                    placeholder="Digite o endereço"
-                                    {...field}
-                                    className="w-full"
-                                />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="telefone"
-                    render={({ field }) => (
-                        <FormItem className="col-span-1 md:col-span-1">
-                            <FormLabel>Telefone</FormLabel>
-                            <FormControl>
-                                <Input
-                                    placeholder="(XX)XXXXXXXXX"
-                                    {...field}
-                                    className="w-full"
-                                />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="data_conversao"
-                    render={({ field }) => (
-                        <FormItem className="col-span-1 md:col-span-1">
-                            <FormLabel>Data de Conversão</FormLabel>
-                            <FormControl>
-                                <DatePicker
-                                    value={field.value}
-                                    onChange={(date) => field.onChange(date)}
-                                    onBlur={field.onBlur}
-                                    name={field.name}
-                                />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="data_inicio_celula"
-                    render={({ field }) => (
-                        <FormItem className="col-span-1 md:col-span-1">
-                            <FormLabel>Data de Início da Célula</FormLabel>
-                            <FormControl>
-                                <DatePicker
-                                    value={field.value}
-                                    onChange={
-                                        field.onChange as (date: string) => void
-                                    }
-                                    onBlur={field.onBlur}
-                                    name={field.name}
-                                />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <Controller
-                    control={form.control}
-                    name="cargo"
-                    render={({ field }) => (
-                        <FormItem className="col-span-1 md:col-span-1">
-                            <FormLabel>Cargo na célula</FormLabel>
-                            <FormControl>
-                                <Select
-                                    value={field.value}
-                                    onValueChange={(value) =>
-                                        field.onChange(value)
-                                    }
-                                    name={field.name}
-                                >
-                                    <SelectTrigger
-                                        className={
-                                            `flex h-12 w-full items-center justify-between rounded-md border shadow-md px-4 py-1 text-md bg-white ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50
-                                            ${field.value
-                                                ? "text-gray-800"
-                                                : "text-gray-500"}`
+            <div className="flex flex-col items-center w-full sm:w-2/3">
+                <Titulo>Cadastrar Membro</Titulo>
+                <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="bg-gray-50 p-5 shadow-xl rounded-xl grid grid-col gap-4 w-full sm:p-10" // Ajuste de responsividade
+                >
+                    <FormField
+                        control={form.control}
+                        name="nome"
+                        render={({ field }) => (
+                            <FormItem className="col-span-1 md:col-span-1">
+                                <FormLabel>Nome</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        placeholder="Digite o nome"
+                                        {...field}
+                                        className="w-full"
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="endereco"
+                        render={({ field }) => (
+                            <FormItem className="col-span-1 md:col-span-1">
+                                <FormLabel>Endereço</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        placeholder="Digite o endereço"
+                                        {...field}
+                                        className="w-full"
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="telefone"
+                        render={({ field }) => (
+                            <FormItem className="col-span-1 md:col-span-1">
+                                <FormLabel>Telefone</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        placeholder="(XX)XXXXXXXXX"
+                                        {...field}
+                                        className="w-full"
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="data_conversao"
+                        render={({ field }) => (
+                            <FormItem className="col-span-1 md:col-span-1">
+                                <FormLabel>Data de Conversão</FormLabel>
+                                <FormControl>
+                                    <DatePicker
+                                        value={field.value}
+                                        onChange={(date) =>
+                                            field.onChange(date)
                                         }
+                                        onBlur={field.onBlur}
+                                        name={field.name}
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="data_inicio_celula"
+                        render={({ field }) => (
+                            <FormItem className="col-span-1 md:col-span-1">
+                                <FormLabel>Data de Início da Célula</FormLabel>
+                                <FormControl>
+                                    <DatePicker
+                                        value={field.value}
+                                        onChange={
+                                            field.onChange as (
+                                                date: string
+                                            ) => void
+                                        }
+                                        onBlur={field.onBlur}
+                                        name={field.name}
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <Controller
+                        control={form.control}
+                        name="cargo"
+                        render={({ field }) => (
+                            <FormItem className="col-span-1 md:col-span-1">
+                                <FormLabel>Cargo na célula</FormLabel>
+                                <FormControl>
+                                    <Select
+                                        value={field.value}
+                                        onValueChange={(value) =>
+                                            field.onChange(value)
+                                        }
+                                        name={field.name}
                                     >
-                                        <SelectValue placeholder="Selecione um cargo" />
-                                    </SelectTrigger>
-                                    <SelectContent className="bg-white">
-                                        {cargos.map((cargo, index) => (
-                                            <SelectItem
-                                                key={index}
-                                                value={cargo.nome}
-                                            >
-                                                {cargo.nome}
-                                            </SelectItem>
-                                        ))}
-                                    </SelectContent>
-                                </Select>
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <div className="md:col-span-3">
-                    <Button type="submit" className=" mt-5 rounded-lg w-full bg-slate-400 hover:bg-slate-700 text-white text-md">
-                        Cadastrar
-                    </Button>
-                </div>
-            </form>
+                                        <SelectTrigger
+                                            className={`flex h-12 w-full items-center justify-between rounded-md border shadow-md px-4 py-1 text-md bg-white ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50
+                                            ${
+                                                field.value
+                                                    ? "text-gray-800"
+                                                    : "text-gray-500"
+                                            }`}
+                                        >
+                                            <SelectValue placeholder="Selecione um cargo" />
+                                        </SelectTrigger>
+                                        <SelectContent className="bg-white">
+                                            {cargos.map((cargo, index) => (
+                                                <SelectItem
+                                                    key={index}
+                                                    value={cargo.nome}
+                                                >
+                                                    {cargo.nome}
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <div className="md:col-span-3">
+                        <Button
+                            type="submit"
+                            className=" mt-5 rounded-lg w-full bg-slate-400 hover:bg-slate-700 text-white text-md"
+                        >
+                            Cadastrar
+                        </Button>
+                    </div>
+                </form>
+            </div>
         </Form>
     );
 }

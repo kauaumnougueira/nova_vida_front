@@ -21,7 +21,7 @@ const Header: React.FC<HeaderProps> = ({ toggleNavbar }) => {
             <header className="flex h-20 w-full items-center px-0 md:px-6">
                 <Button
                     size="icon"
-                    className="shrink-0 -ml-8" // Remove left margin
+                    className="shrink-0 sm:-ml-8" // Remove left margin
                     aria-label="Toggle navigation menu"
                     onClick={toggleNavbar}
                 >
