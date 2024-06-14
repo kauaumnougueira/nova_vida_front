@@ -91,7 +91,11 @@ const Tabela = () => {
                     onChange={(e) => setFilter(e.target.value)}
                     className="w-1/3 p-2 border-gray-100 rounded-lg text-gray-600 shadow-lg bg-gray-100"
                 />
-                <Button className="hover:shadow-lg hover:bg-sky-600 hover:text-white" >Cadastrar Membro</Button>
+                <Button className="hover:shadow-lg hover:bg-sky-600 hover:text-white" >
+                    <Link to="/cadastrar-membro">
+                        Cadastrar Membro
+                    </Link>
+                </Button>
             </div>
             
             <Table className="w-full">
