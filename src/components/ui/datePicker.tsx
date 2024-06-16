@@ -3,16 +3,12 @@
 import * as React from "react";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
-import { Calendar as CalendarIcon } from "lucide-react";
+import { CalendarIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 interface DatePickerProps {
   onBlur: () => void;
@@ -46,21 +42,17 @@ export default function DatePicker({ onBlur, name, value: initialValue, onChange
           )}
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
-          {selectedDate ? (
-            format(selectedDate, "PPP", { locale: ptBR })
-          ) : (
-            <span>Escolha uma data</span>
-          )}
+          {selectedDate ? format(selectedDate, "PPP", { locale: ptBR }) : <span>Pick a date</span>}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-auto bg-white p-0">
+      <PopoverContent align="start" className="w-auto bg-white p-0">
         <Calendar
           mode="single"
+          captionLayout="dropdown-buttons"
           selected={selectedDate}
           onSelect={handleDateChange}
-          initialFocus
-          className="rounded-md border"
-          locale={ptBR} // Display calendar in Portuguese
+          fromYear={2000}
+          toYear={new Date().getFullYear()}
         />
       </PopoverContent>
       <input type="hidden" name={name} value={formatDate(selectedDate)} onChange={() => {}} onBlur={onBlur} />

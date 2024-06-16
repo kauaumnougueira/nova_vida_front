@@ -20,3 +20,7 @@
   .action{
     cursor: pointer;
   }
+
+  .rdp-vhidden {
+    @apply hidden;
+  }

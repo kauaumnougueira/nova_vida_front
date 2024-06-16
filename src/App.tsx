@@ -5,6 +5,7 @@ import Cadastro from "./pages/membros/Cadastro";
 import Tabela from "./pages/membros/Tabela";
 import "./style.css";
 import { Routes, Route } from "react-router-dom";
+import { Toaster } from "sonner";
 
 function App() {
     const [isNavbarOpen, setIsNavbarOpen] = useState(false);
@@ -27,6 +28,7 @@ function App() {
                     {/* Outras rotas */}
                 </Routes>
             </div>
+            <Toaster/>
         </>
     );
 }

@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
-import { z } from "zod";
+import { z, infer as zodInfer } from "zod"; // Importa zodInfer para derivar tipos
 import { Button } from "@/components/ui/button";
 import {
     Form,
@@ -19,10 +19,13 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { useEffect, useState } from "react";
-import { getAll } from "@/services/api";
+import { getAll, postObjeto } from "@/services/api";
 import DatePicker from "@/components/ui/datePicker";
 import { Titulo } from "@/components/interativos/texts";
+import { formatPhone } from "@/utils/mascaras";
+import { toast } from "sonner";
 
+// Schema de validação Zod
 const formSchema = z.object({
     nome: z.string().min(2, {
         message: "Nome deve ter pelo menos 2 caracteres.",
@@ -30,34 +33,59 @@ const formSchema = z.object({
     endereco: z.string().min(5, {
         message: "Endereço deve ter pelo menos 5 caracteres.",
     }),
-    telefone: z.string().regex(/^\(\d{2}\)\d{8,9}$/, {
+    telefone: z.string().min(14).max(14).refine(formatPhone, {
         message:
             "Telefone deve estar no formato (XX)XXXXXXXXX ou (XX)XXXXXXXXXX.",
     }),
-    data_conversao: z.date({
+    data_conversao: z.string({
         required_error: "Data de conversão é obrigatória",
         invalid_type_error: "Data de conversão deve ser uma data válida",
     }),
-    data_inicio_celula: z.date({
+    data_inicio_celula: z.string({
         required_error: "Data de início da célula é obrigatória",
         invalid_type_error: "Data de início da célula deve ser uma data válida",
     }),
-    cargo: z.string().min(1, {
+    cargo_id: z.number().min(1, {
         message: "Cargo deve ser selecionado.",
-    }),
+    }), // Use número aqui
 });
 
+// Derive the type from the schema
+type FormSchemaType = zodInfer<typeof formSchema>;
+
 export default function Cadastro() {
-    const form = useForm({
+    const form = useForm<FormSchemaType>({
         resolver: zodResolver(formSchema),
         mode: "onChange",
     });
 
-    const onSubmit = (data: unknown) => {
+    const onSubmit = async (data: FormSchemaType) => {
         console.log("Form data", data);
+
+        const membro = {
+            ...data,
+            celula_id: 1,
+            data_associacao: data.data_inicio_celula,
+        };
+        try {
+            const response = await postObjeto('membros', membro);
+
+            if(response.ok){
+                toast("Sucesso ao Salvar", {
+                    description: `${membro.nome} cadastrado com sucesso`
+                  })
+            }else{
+                toast("Erro ao Salvar", {
+                    description: `${membro.nome} não foi cadastrado`
+                  })
+            }
+        } catch (error) {
+            console.error("Error posting data", error);
+        }
     };
 
     interface Cargo {
+        id: number;
         nome: string;
     }
 
@@ -88,7 +116,7 @@ export default function Cadastro() {
                 <Titulo>Cadastrar Membro</Titulo>
                 <form
                     onSubmit={form.handleSubmit(onSubmit)}
-                    className="bg-gray-50 p-5 shadow-xl rounded-xl grid grid-col gap-4 w-full sm:p-10" // Ajuste de responsividade
+                    className="bg-gray-50 p-5 shadow-xl rounded-xl grid grid-col gap-4 w-full sm:p-10"
                 >
                     <FormField
                         control={form.control}
@@ -135,6 +163,11 @@ export default function Cadastro() {
                                         placeholder="(XX)XXXXXXXXX"
                                         {...field}
                                         className="w-full"
+                                        value={field.value}
+                                        onChange={(e) => {
+                                            const formattedValue = formatPhone(e.target.value);
+                                            field.onChange(formattedValue);
+                                        }}
                                     />
                                 </FormControl>
                                 <FormMessage />
@@ -170,10 +203,8 @@ export default function Cadastro() {
                                 <FormControl>
                                     <DatePicker
                                         value={field.value}
-                                        onChange={
-                                            field.onChange as (
-                                                date: string
-                                            ) => void
+                                        onChange={(date) =>
+                                            field.onChange(date)
                                         }
                                         onBlur={field.onBlur}
                                         name={field.name}
@@ -185,43 +216,48 @@ export default function Cadastro() {
                     />
                     <Controller
                         control={form.control}
-                        name="cargo"
-                        render={({ field }) => (
-                            <FormItem className="col-span-1 md:col-span-1">
-                                <FormLabel>Cargo na célula</FormLabel>
-                                <FormControl>
-                                    <Select
-                                        value={field.value}
-                                        onValueChange={(value) =>
-                                            field.onChange(value)
-                                        }
-                                        name={field.name}
-                                    >
-                                        <SelectTrigger
-                                            className={`flex h-12 w-full items-center justify-between rounded-md border shadow-md px-4 py-1 text-md bg-white ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50
-                                            ${
-                                                field.value
-                                                    ? "text-gray-800"
-                                                    : "text-gray-500"
-                                            }`}
+                        name="cargo_id"
+                        render={({ field }) => {
+                            // Encontre o nome do cargo correspondente ao id selecionado
+                            const selectedCargo = cargos.find(c => c.id === field.value);
+                            return (
+                                <FormItem className="col-span-1 md:col-span-1">
+                                    <FormLabel>Cargo na célula</FormLabel>
+                                    <FormControl>
+                                        <Select
+                                            value={field.value?.toString()} // Converte o valor do ID para string
+                                            onValueChange={(value) =>
+                                                field.onChange(parseInt(value)) // Converte a string de volta para número
+                                            }
+                                            name={field.name}
                                         >
-                                            <SelectValue placeholder="Selecione um cargo" />
-                                        </SelectTrigger>
-                                        <SelectContent className="bg-white">
-                                            {cargos.map((cargo, index) => (
-                                                <SelectItem
-                                                    key={index}
-                                                    value={cargo.nome}
-                                                >
-                                                    {cargo.nome}
-                                                </SelectItem>
-                                            ))}
-                                        </SelectContent>
-                                    </Select>
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
+                                            <SelectTrigger
+                                                className={`flex h-12 w-full items-center justify-between rounded-md border shadow-md px-4 py-1 text-md bg-white ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${
+                                                    selectedCargo
+                                                        ? "text-gray-800"
+                                                        : "text-gray-500"
+                                                }`}
+                                            >
+                                                <SelectValue placeholder="Selecione um cargo">
+                                                    {selectedCargo ? selectedCargo.nome : ''}
+                                                </SelectValue>
+                                            </SelectTrigger>
+                                            <SelectContent className="bg-white">
+                                                {cargos.map((cargo) => (
+                                                    <SelectItem
+                                                        key={cargo.id}
+                                                        value={cargo.id.toString()} // Usa o ID como valor
+                                                    >
+                                                        {cargo.nome}
+                                                    </SelectItem>
+                                                ))}
+                                            </SelectContent>
+                                        </Select>
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            );
+                        }}
                     />
                     <div className="md:col-span-3">
                         <Button
