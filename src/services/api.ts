@@ -2,7 +2,7 @@ const apiUrl = 'http://127.0.0.1:8000';
 
 export default apiUrl
 
-const getObjeto = async (nomeTabela = '', id = '') => {
+const getObjeto = async (nomeTabela:string, id:number) => {
   const token = localStorage.getItem('accessToken');
 
   const respostaObjeto = await fetch(`${apiUrl}/api/${nomeTabela}/${id}`, {
@@ -18,7 +18,7 @@ const getObjeto = async (nomeTabela = '', id = '') => {
 
 export { getObjeto }
 
-const getAll = async (endpoint = '', encodedSearchTerm = '') => {
+const getAll = async (endpoint:string, encodedSearchTerm = '') => {
   const token = localStorage.getItem('accessToken');
 
   const response = await fetch(`${apiUrl}/api/${endpoint}?search=${encodedSearchTerm}`,
@@ -34,7 +34,7 @@ const getAll = async (endpoint = '', encodedSearchTerm = '') => {
 
 export { getAll }
 
-const postObjeto = async (endpoint = '', objeto = {}) => {
+const postObjeto = async (endpoint:string, objeto:object) => {
   const token = localStorage.getItem('accessToken');
 
   const resposta = await fetch(`${apiUrl}/api/${endpoint}`, {
@@ -51,7 +51,7 @@ const postObjeto = async (endpoint = '', objeto = {}) => {
 
 export { postObjeto }
 
-const putObjeto = async (endpoint = '', objeto = {}, id = '') => {
+const putObjeto = async (endpoint:string, objeto:object, id:number) => {
   const token = localStorage.getItem('accessToken');
 
   const resposta= await fetch(`${apiUrl}/api/${endpoint}/${id}`, {
@@ -67,3 +67,19 @@ const putObjeto = async (endpoint = '', objeto = {}, id = '') => {
 }
 
 export { putObjeto }
+
+const deleteObjeto = async (endpoint: string, id: number) => {
+  const token = localStorage.getItem('accessToken');
+
+  const resposta = await fetch(`${apiUrl}/api/${endpoint}/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    }
+  });
+
+  return resposta;
+}
+
+export { deleteObjeto };

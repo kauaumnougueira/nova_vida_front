@@ -31,6 +31,12 @@ export default function DatePicker({ onBlur, name, value: initialValue, onChange
     onChange(formatDate(date)); // Call the onChange prop with the formatted date
   };
 
+  React.useEffect(() => {
+    if (initialValue && !selectedDate) {
+      setSelectedDate(new Date(initialValue));
+    }
+  }, [initialValue, selectedDate]);
+
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -42,7 +48,7 @@ export default function DatePicker({ onBlur, name, value: initialValue, onChange
           )}
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
-          {selectedDate ? format(selectedDate, "PPP", { locale: ptBR }) : <span>Pick a date</span>}
+          {selectedDate ? format(selectedDate, "PPP", { locale: ptBR }) : <span>Escolha uma data</span>}
         </Button>
       </PopoverTrigger>
       <PopoverContent align="start" className="w-auto bg-white p-0">

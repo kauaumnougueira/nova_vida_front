@@ -4,9 +4,9 @@ const formatPhone = (value:string )=> {
 
     // Formata para (XX)XXXXX-XXXX ou (XX)XXXX-XXXX
     if (digits.length <= 10) {
-        return `(${digits.slice(0, 2)})${digits.slice(2, 6)}-${digits.slice(6, 10)}`;
+        return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6, 10)}`;
     } else {
-        return `(${digits.slice(0, 2)})${digits.slice(2, 7)}-${digits.slice(7, 11)}`;
+        return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7, 11)}`;
     }
 };
 
@@ -20,4 +20,10 @@ const formatDatePickerBR = (date:Date) => {
     return `${day}/${month}/${year}`;
   };
 
-export {formatPhone, formatDatePickerBR}
+const formatDateSemestral = (value:string) => {
+    const digits = value.replace(/\D/g, "")
+
+        return `${digits.slice(0,4)}.${digits.slice(4,5)}`
+}
+
+export {formatPhone, formatDatePickerBR, formatDateSemestral}

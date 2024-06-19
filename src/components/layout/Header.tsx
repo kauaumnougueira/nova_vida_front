@@ -17,7 +17,7 @@ const Header: React.FC<HeaderProps> = ({ toggleNavbar }) => {
     ];
 
     return (
-        <div className="container bg-gray-50 mx-auto px-0 md:px-6 lg:px-8 border shadow-md mb-10">
+        <div className="container bg-gray-50 mx-auto px-0 md:px-6 lg:px-8 border shadow-md mb-10 fixed z-20">
             <header className="flex h-20 w-full items-center px-0 md:px-6">
                 <Button
                     size="icon"

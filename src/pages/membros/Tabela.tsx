@@ -1,7 +1,6 @@
 import {
     Table,
     TableBody,
-    TableCaption,
     TableCell,
     TableFooter,
     TableHead,
@@ -14,7 +13,7 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog";
-import { getAll } from "@/services/api";
+import { deleteObjeto, getAll } from "@/services/api";
 import { EllipsisVertical } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -27,6 +26,8 @@ import {
 } from "@/components/ui/menubar";
 import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
+import { Titulo } from "@/components/interativos/texts";
+import { toast } from "sonner";
 
 interface Membro {
     id: number;
@@ -81,17 +82,40 @@ const Tabela = () => {
         membro.cargos.some(cargo => cargo.nome.toLowerCase().includes(filter))
     );
 
+    const excluirMembro = async (id:number) => {
+        try{
+            const response = await deleteObjeto('membros', id)
+
+            if(response.ok){
+                toast.success("Sucesso ao deletar o membro", {
+                    description: `${selectedMembro?.nome} excluído com sucesso`,
+                });
+
+                fetchMembros()
+            }else{
+                toast.success("Erro ao deletar o membro", {
+                    description: `${selectedMembro?.nome} não foi excluído`,
+                });
+            }
+
+            setIsDialogOpen(false)
+        }catch(error){
+            console.error("Erro ao deletar membro:", error);
+        }
+    }
+
     return (
         <div className="flex flex-col items-center h-full w-90 p-4">
+            <Titulo>Lista de Membros</Titulo>
             {/* Campo de filtro */}
             <div className="w-full mb-5 flex justify-center">
                 <Input
                     placeholder="Filtrar por nome, telefone, data, endereço ou cargo..."
                     value={filter}
                     onChange={(e) => setFilter(e.target.value)}
-                    className="w-2/5 p-2 border-gray-100 rounded-lg text-gray-600 shadow-lg bg-gray-100"
+                    className="w-2/5 p-4 border-gray-300 rounded-lg h-10 text-gray-600 shadow-none bg-transparent"
                 />
-                <Button className="hover:shadow-lg h-12 hover:bg-sky-600 hover:text-white" >
+                <Button className="hover:shadow-lg h-10 hover:bg-sky-600 hover:text-white" >
                     <Link to="/cadastrar-membro">
                         Cadastrar Membro
                     </Link>
@@ -99,9 +123,8 @@ const Tabela = () => {
             </div>
             
             <Table className="w-full">
-                <TableCaption>Lista dos membros cadastrados</TableCaption>
                 <TableHeader>
-                    <TableRow className="bg-gray-100 hover:bg-gray-100">
+                    <TableRow>
                         <TableHead className="w-[20vw]">Nome</TableHead>
                         <TableHead className="w-[10vw]">Telefone</TableHead>
                         <TableHead className="w-[10vw]">Data Conversão</TableHead>
@@ -113,10 +136,10 @@ const Tabela = () => {
                 <TableBody>
                     {filteredMembros.length > 0 ? (
                         filteredMembros.map((membro, index) => (
-                            <TableRow key={index} className="hover:bg-gray-100">
-                                <TableCell className="font-medium">{membro.nome}</TableCell>
+                            <TableRow key={index}>
+                                <TableCell className="font-medium text-black">{membro.nome}</TableCell>
                                 <TableCell>{membro.telefone}</TableCell>
-                                <TableCell>{membro.data_conversao}</TableCell>
+                                <TableCell className="text-center">{membro.data_conversao}</TableCell>
                                 <TableCell>{membro.endereco}</TableCell>
                                 <TableCell>{membro.cargos[0]?.nome ?? "N/A"}</TableCell>
                                 <TableCell className="text-center">
@@ -182,7 +205,7 @@ const Tabela = () => {
                             >
                                 Cancelar
                             </Button>
-                            <Button className="bg-red-600 text-white hover:bg-red-700">
+                            <Button className="bg-red-600 text-white hover:bg-red-700" onClick={() => excluirMembro(selectedMembro.id)}>
                                 Confirmar
                             </Button>
                         </div>

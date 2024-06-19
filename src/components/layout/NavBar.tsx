@@ -68,7 +68,7 @@ const Navbar: React.FC<NavbarProps> = ({ isOpen, closeNavbar }) => {
         <Sheet open={isOpen} onOpenChange={closeNavbar}>
             <SheetContent
                 side="left"
-                className="flex flex-col bg-white p-4 shadow-lg dark:bg-gray-900 w-80"
+                className="flex flex-col bg-gray-50 p-4 shadow-lg dark:bg-gray-900 w-80"
             >
                 <nav className="grid gap-2 text-lg">
                     <Link
