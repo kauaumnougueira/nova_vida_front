@@ -160,6 +160,340 @@ export default function CadastroRelatorio() {
                 }
             } catch (error) {
                 console.error("Error fetching membros:", error);
+                const teste = [
+                    {
+                        id: 1,
+                        nome: "Pedro Rocha Boucinhas Pacheco",
+                        endereco:
+                            "Planalto Turu III, Rua Centro-Oeste, Quadra 02, Casa 42",
+                        telefone: "(98) 99968-1429",
+                        data_conversao: "2022.1",
+                        data_inicio_celula: null,
+                        aniversario: "27/11/2001",
+                        ativo: 1,
+                        celula_id: 1,
+                        nome_celula: "Célula Nova Vida",
+                        cargos: [
+                            {
+                                id: 4,
+                                nome: "Anfitrião",
+                                descricao:
+                                    "Responsável por disponibilizar sua casa para uma reunião, organiza o espaço e prepara o ambiente para louvor ao Senhor.",
+                                ativo: 1,
+                                created_at: "2024-06-18T20:01:35.000000Z",
+                                updated_at: "2024-06-18T20:01:35.000000Z",
+                                deleted_at: null,
+                                pivot: {
+                                    id: 1,
+                                    cargo_id: 4,
+                                    data_associacao: "2024-06-18",
+                                    deleted_at: null,
+                                    created_at: "2024-06-18T20:02:58.000000Z",
+                                    updated_at: "2024-06-18T20:02:58.000000Z",
+                                },
+                            },
+                        ],
+                        reunioes_como_pregador: [],
+                    },
+                    {
+                        id: 2,
+                        nome: "Lucas Batista dos Santos",
+                        endereco: "turu",
+                        telefone: "(98) 99968-4165",
+                        data_conversao: "2022.1",
+                        data_inicio_celula: null,
+                        aniversario: "24/11/2001",
+                        ativo: 1,
+                        celula_id: 1,
+                        nome_celula: "Célula Nova Vida",
+                        cargos: [
+                            {
+                                id: 1,
+                                nome: "líder",
+                                descricao:
+                                    "Responsável por administrar a célula, tem acesso as reuniões com supervisores e repassa aos membros.",
+                                ativo: 1,
+                                created_at: "2024-06-18T20:01:35.000000Z",
+                                updated_at: "2024-06-18T20:01:35.000000Z",
+                                deleted_at: null,
+                                pivot: {
+                                    id: 2,
+                                    cargo_id: 1,
+                                    data_associacao: "2024-06-18",
+                                    deleted_at: null,
+                                    created_at: "2024-06-18T20:02:58.000000Z",
+                                    updated_at: "2024-06-18T20:02:58.000000Z",
+                                },
+                            },
+                        ],
+                        reunioes_como_pregador: [],
+                    },
+                    {
+                        id: 4,
+                        nome: "Pedro Vinicius de Almeida Sousa",
+                        endereco: "turu",
+                        telefone: "(98) 98135-4839",
+                        data_conversao: "2022.1",
+                        data_inicio_celula: null,
+                        aniversario: "10/11/2008",
+                        ativo: 1,
+                        celula_id: 1,
+                        nome_celula: "Célula Nova Vida",
+                        cargos: [
+                            {
+                                id: 5,
+                                nome: "Membro",
+                                descricao:
+                                    "Responsável por participar da Grande Comissão ativamente, aprendendo na célula e convidando amigos.",
+                                ativo: 1,
+                                created_at: "2024-06-18T20:01:35.000000Z",
+                                updated_at: "2024-06-18T20:01:35.000000Z",
+                                deleted_at: null,
+                                pivot: {
+                                    id: 4,
+                                    cargo_id: 5,
+                                    data_associacao: "2024-06-18",
+                                    deleted_at: null,
+                                    created_at: "2024-06-18T20:02:58.000000Z",
+                                    updated_at: "2024-06-18T20:02:58.000000Z",
+                                },
+                            },
+                        ],
+                        reunioes_como_pregador: [],
+                    },
+                    {
+                        id: 5,
+                        nome: "Isaque Pinheiro Castro",
+                        endereco: "turu",
+                        telefone: "(98) 98721-3542",
+                        data_conversao: "2022.1",
+                        data_inicio_celula: null,
+                        aniversario: "08/01/2008",
+                        ativo: 1,
+                        celula_id: 1,
+                        nome_celula: "Célula Nova Vida",
+                        cargos: [
+                            {
+                                id: 5,
+                                nome: "Membro",
+                                descricao:
+                                    "Responsável por participar da Grande Comissão ativamente, aprendendo na célula e convidando amigos.",
+                                ativo: 1,
+                                created_at: "2024-06-18T20:01:35.000000Z",
+                                updated_at: "2024-06-18T20:01:35.000000Z",
+                                deleted_at: null,
+                                pivot: {
+                                    id: 5,
+                                    cargo_id: 5,
+                                    data_associacao: "2024-06-18",
+                                    deleted_at: null,
+                                    created_at: "2024-06-18T20:02:59.000000Z",
+                                    updated_at: "2024-06-18T20:02:59.000000Z",
+                                },
+                            },
+                        ],
+                        reunioes_como_pregador: [],
+                    },
+                    {
+                        id: 6,
+                        nome: "João Felipe Maia Lisboa",
+                        endereco: "turu",
+                        telefone: "(98) 97005-2301",
+                        data_conversao: "2022.1",
+                        data_inicio_celula: null,
+                        aniversario: "23/06/2007",
+                        ativo: 1,
+                        celula_id: 1,
+                        nome_celula: "Célula Nova Vida",
+                        cargos: [
+                            {
+                                id: 5,
+                                nome: "Membro",
+                                descricao:
+                                    "Responsável por participar da Grande Comissão ativamente, aprendendo na célula e convidando amigos.",
+                                ativo: 1,
+                                created_at: "2024-06-18T20:01:35.000000Z",
+                                updated_at: "2024-06-18T20:01:35.000000Z",
+                                deleted_at: null,
+                                pivot: {
+                                    id: 6,
+                                    cargo_id: 5,
+                                    data_associacao: "2024-06-18",
+                                    deleted_at: null,
+                                    created_at: "2024-06-18T20:02:59.000000Z",
+                                    updated_at: "2024-06-18T20:02:59.000000Z",
+                                },
+                            },
+                        ],
+                        reunioes_como_pregador: [],
+                    },
+                    {
+                        id: 7,
+                        nome: "Thiago Itallo Pinheiro Batista",
+                        endereco: "turu",
+                        telefone: "(98) 99153-5413",
+                        data_conversao: "2022.1",
+                        data_inicio_celula: null,
+                        aniversario: "12/03/2007",
+                        ativo: 1,
+                        celula_id: 1,
+                        nome_celula: "Célula Nova Vida",
+                        cargos: [
+                            {
+                                id: 3,
+                                nome: "secretário",
+                                descricao:
+                                    "Responsável por organizar a documentação da célula e fazer relatórios da mesma.",
+                                ativo: 1,
+                                created_at: "2024-06-18T20:01:35.000000Z",
+                                updated_at: "2024-06-18T20:01:35.000000Z",
+                                deleted_at: null,
+                                pivot: {
+                                    id: 7,
+                                    cargo_id: 3,
+                                    data_associacao: "2024-06-18",
+                                    deleted_at: null,
+                                    created_at: "2024-06-18T20:02:59.000000Z",
+                                    updated_at: "2024-06-18T20:02:59.000000Z",
+                                },
+                            },
+                        ],
+                        reunioes_como_pregador: [],
+                    },
+                    {
+                        id: 8,
+                        nome: "Francesco Marques Silva",
+                        endereco: "turu",
+                        telefone: "(98) 97019-0326",
+                        data_conversao: "2024.1",
+                        data_inicio_celula: null,
+                        aniversario: "04/03/2007",
+                        ativo: 1,
+                        celula_id: 1,
+                        nome_celula: "Célula Nova Vida",
+                        cargos: [
+                            {
+                                id: 5,
+                                nome: "Membro",
+                                descricao:
+                                    "Responsável por participar da Grande Comissão ativamente, aprendendo na célula e convidando amigos.",
+                                ativo: 1,
+                                created_at: "2024-06-18T20:01:35.000000Z",
+                                updated_at: "2024-06-18T20:01:35.000000Z",
+                                deleted_at: null,
+                                pivot: {
+                                    id: 8,
+                                    cargo_id: 5,
+                                    data_associacao: "2024-06-18",
+                                    deleted_at: null,
+                                    created_at: "2024-06-18T20:03:00.000000Z",
+                                    updated_at: "2024-06-18T20:03:00.000000Z",
+                                },
+                            },
+                        ],
+                        reunioes_como_pregador: [],
+                    },
+                    {
+                        id: 9,
+                        nome: "Carlos Eduardo Lages Sousa Junior",
+                        endereco: "turu",
+                        telefone: "(98) 99268-4483",
+                        data_conversao: "2022.1",
+                        data_inicio_celula: null,
+                        aniversario: "18/11/2008",
+                        ativo: 1,
+                        celula_id: 1,
+                        nome_celula: "Célula Nova Vida",
+                        cargos: [
+                            {
+                                id: 5,
+                                nome: "Membro",
+                                descricao:
+                                    "Responsável por participar da Grande Comissão ativamente, aprendendo na célula e convidando amigos.",
+                                ativo: 1,
+                                created_at: "2024-06-18T20:01:35.000000Z",
+                                updated_at: "2024-06-18T20:01:35.000000Z",
+                                deleted_at: null,
+                                pivot: {
+                                    id: 9,
+                                    cargo_id: 5,
+                                    data_associacao: "2024-06-18",
+                                    deleted_at: null,
+                                    created_at: "2024-06-18T20:03:00.000000Z",
+                                    updated_at: "2024-06-18T20:03:00.000000Z",
+                                },
+                            },
+                        ],
+                        reunioes_como_pregador: [],
+                    },
+                    {
+                        id: 10,
+                        nome: "Guilherme Brandão Leite Siqueira",
+                        endereco: "turu",
+                        telefone: "(99) 98460-8987",
+                        data_conversao: "2022.1",
+                        data_inicio_celula: null,
+                        aniversario: "20/05/2008",
+                        ativo: 1,
+                        celula_id: 1,
+                        nome_celula: "Célula Nova Vida",
+                        cargos: [
+                            {
+                                id: 5,
+                                nome: "Membro",
+                                descricao:
+                                    "Responsável por participar da Grande Comissão ativamente, aprendendo na célula e convidando amigos.",
+                                ativo: 1,
+                                created_at: "2024-06-18T20:01:35.000000Z",
+                                updated_at: "2024-06-18T20:01:35.000000Z",
+                                deleted_at: null,
+                                pivot: {
+                                    id: 10,
+                                    cargo_id: 5,
+                                    data_associacao: "2024-06-18",
+                                    deleted_at: null,
+                                    created_at: "2024-06-18T20:03:00.000000Z",
+                                    updated_at: "2024-06-18T20:03:00.000000Z",
+                                },
+                            },
+                        ],
+                        reunioes_como_pregador: [],
+                    },
+                    {
+                        id: 11,
+                        nome: "Kaua Nogueira Araujo",
+                        endereco: "rua 13 quadra 8 casa 23, vinhais",
+                        telefone: "(98) 98715-3564",
+                        data_conversao: "2017.1",
+                        data_inicio_celula: null,
+                        aniversario: "05/02/2004",
+                        ativo: 1,
+                        celula_id: 1,
+                        nome_celula: "Célula Nova Vida",
+                        cargos: [
+                            {
+                                id: 2,
+                                nome: "vice-líder",
+                                descricao:
+                                    "Responsável por auxiliar na administração da célula, está constantemente aprendendo com o líder.",
+                                ativo: 1,
+                                created_at: "2024-06-18T20:01:35.000000Z",
+                                updated_at: "2024-06-18T20:01:35.000000Z",
+                                deleted_at: null,
+                                pivot: {
+                                    id: 11,
+                                    cargo_id: 2,
+                                    data_associacao: "2024-06-19",
+                                    deleted_at: null,
+                                    created_at: "2024-06-19T02:04:42.000000Z",
+                                    updated_at: "2024-06-19T02:04:42.000000Z",
+                                },
+                            },
+                        ],
+                        reunioes_como_pregador: [],
+                    },
+                ];
+                setMembros(teste);
             }
         };
 
@@ -287,7 +621,11 @@ export default function CadastroRelatorio() {
                             <FormItem className="col-span-4 md:col-span-4">
                                 <FormLabel>Observações</FormLabel>
                                 <FormControl>
-                                    <Textarea placeholder="Digite aqui as observações" {...field} className="w-full"/>
+                                    <Textarea
+                                        placeholder="Digite aqui as observações"
+                                        {...field}
+                                        className="w-full"
+                                    />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
