@@ -61,6 +61,10 @@ const Navbar: React.FC<NavbarProps> = ({ isOpen, closeNavbar }) => {
         {
             text: "Células",
             to: "/celulas"
+        },
+        {
+            text: "Cadastrar Relatório",
+            to: "/cadastrar-relatorio"
         }
     ];
 
