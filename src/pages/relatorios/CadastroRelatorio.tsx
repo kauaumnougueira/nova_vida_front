@@ -178,7 +178,7 @@ export default function CadastroRelatorio() {
                         control={form.control}
                         name="data"
                         render={({ field }) => (
-                            <FormItem className="col-span-1 md:col-span-1">
+                            <FormItem className="col-span-4 md:col-span-1">
                                 <FormLabel>Data da Reunião</FormLabel>
                                 <FormControl>
                                     <DatePicker
@@ -198,7 +198,7 @@ export default function CadastroRelatorio() {
                         control={form.control}
                         name="local"
                         render={({ field }) => (
-                            <FormItem className="col-span-3 md:col-span-3">
+                            <FormItem className="col-span-4 md:col-span-3">
                                 <FormLabel>Local</FormLabel>
                                 <FormControl>
                                     <Input
@@ -215,7 +215,7 @@ export default function CadastroRelatorio() {
                         control={form.control}
                         name="tema"
                         render={({ field }) => (
-                            <FormItem className="col-span-2 md:col-span-2">
+                            <FormItem className="col-span-4 md:col-span-2">
                                 <FormLabel>Tema da ministração</FormLabel>
                                 <FormControl>
                                     <Input
@@ -237,7 +237,7 @@ export default function CadastroRelatorio() {
                                 (c) => c.id === field.value
                             );
                             return (
-                                <FormItem className="col-span-2 md:col-span-2">
+                                <FormItem className="col-span-4 md:col-span-2">
                                     <FormLabel>Pregador</FormLabel>
                                     <FormControl>
                                         <Select
@@ -294,11 +294,11 @@ export default function CadastroRelatorio() {
                         )}
                     />
 
-                    <div className="md:col-span-4">
+                    <div className="col-span-4 md:col-span-4">
                         <FormLabel>Lista de presença</FormLabel>
                         <CheckList list={membros} />
                     </div>
-                    <div className="md:col-span-4">
+                    <div className="col-span-4 md:col-span-4">
                         <Button
                             type="submit"
                             className="mt-5 rounded-lg w-full bg-slate-400 hover:bg-slate-700 text-white text-md"
