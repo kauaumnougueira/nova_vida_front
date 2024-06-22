@@ -29,24 +29,23 @@ import { Textarea } from "@/components/ui/textarea";
 
 // Schema de validação Zod
 const formSchema = z.object({
-    data: z.string({
-        required_error: "Data da reunião é obrigatória",
-        invalid_type_error: "Data da reunião deve ser uma data válida",
+    data: z.string().min(1, {
+        message: "Data da reunião deve ser uma data válida",
     }),
     presentes: z.array(z.number()).min(1, {
         message: "Pelo menos um membro deve estar presente.",
     }),
     local: z.string().min(1, {
-        message: "Pelo menos um membro deve estar presente.",
+        message: "Deve haver um local",
     }),
     tema: z.string().min(1, {
-        message: "Pelo menos um membro deve estar presente.",
+        message: "Deve haver um tema",
     }),
     observacao: z.string().min(1, {
-        message: "Pelo menos um membro deve estar presente.",
+        message: "Deve haver uma observação",
     }),
     pregador: z.number().min(1, {
-        message: "Cargo deve ser selecionado.",
+        message: "Deve haver um pregador.",
     }),
 });
 
@@ -506,7 +505,7 @@ export default function CadastroRelatorio() {
                 <Titulo>Cadastrar Relatório de Reunião</Titulo>
                 <form
                     onSubmit={form.handleSubmit(onSubmit)}
-                    className="bg-gray-50 p-5 shadow-xl rounded-xl grid grid-cols-4 gap-4 w-full sm:p-10"
+                    className="bg-gray-100 p-5 shadow-xl rounded-xl grid grid-cols-4 gap-4 w-full sm:p-10"
                 >
                     <FormField
                         control={form.control}
@@ -639,7 +638,7 @@ export default function CadastroRelatorio() {
                     <div className="col-span-4 md:col-span-4">
                         <Button
                             type="submit"
-                            className="mt-5 rounded-lg w-full bg-slate-400 hover:bg-slate-700 text-white text-md"
+                            className="mt-5 rounded-lg w-full text-md"
                         >
                             {isEdit ? "Atualizar" : "Cadastrar"}
                         </Button>

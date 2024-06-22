@@ -1,33 +1,30 @@
-import * as React from 'react'
+import * as React from 'react';
 import { cn } from "@/lib/utils"; // Supondo que cn seja sua função para juntar classes
 
 interface TituloProps {
-    color?: 'slate' | 'blue' | 'black' | 'green' | 'red'
-    colorRange?: '500' | '600' | '700' | '800' | '900'
-    size?: '1' | '2' | '3' | '4' | '5'
-    children: React.ReactNode // Use React.ReactNode para permitir mais tipos de filhos
+    color?: 'slate' | 'blue' | 'black' | 'green' | 'red' | 'gray' | 'purple';
+    colorRange?: '500' | '600' | '700' | '800' | '900';
+    size?: '1' | '2' | '3' | '4' | '5';
+    children: React.ReactNode; // Use React.ReactNode para permitir mais tipos de filhos
 }
 
-const Titulo: React.FC<TituloProps> = ({ color='slate', colorRange='900', size='4', children }) => {
+const Titulo: React.FC<TituloProps> = ({ color = 'purple', colorRange = '900', size = '3', children }) => {
     // Map sizes to text classes
-    const textSizeClasses = {
-        '1': 'text-1xl',
-        '2': 'text-2xl',
-        '3': 'text-3xl',
-        '4': 'text-4xl',
-        '5': 'text-5xl',
-    };
+    const textSize = `text-${size}xl`
+
+    const textColor = `text-${color}-${colorRange}`
 
     return (
-        <h1 className={cn(
-            `text-${color}-${colorRange}`, 
-            'mb-10 font-extrabold sm:text-2xl', 
-            textSizeClasses[size], 
-            'mr-auto p-3 border-b w-full'
-        )}>
+        <h1
+            className={cn(
+                textColor, // Classe de cor dinâmica
+                textSize, // Classe de tamanho de texto dinâmica
+                'mb-10 font-bold mr-auto p-3 border-b w-full' // Outras classes fixas
+            )}
+        >
             {children}
         </h1>
-    )
-}
+    );
+};
 
-export { Titulo }
+export { Titulo };

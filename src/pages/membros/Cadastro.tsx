@@ -176,7 +176,7 @@ export default function Cadastro() {
                 <Titulo>Cadastrar Membro</Titulo>
                 <form
                     onSubmit={form.handleSubmit(onSubmit)}
-                    className="bg-gray-50 p-5 shadow-xl rounded-xl grid grid-col gap-4 w-full sm:p-10"
+                    className="bg-gray-200 p-5 shadow-xl rounded-xl grid grid-col gap-4 w-full sm:p-10"
                 >
                     <FormField
                         control={form.control}
@@ -204,7 +204,7 @@ export default function Cadastro() {
                                 (c) => c.id === field.value
                             );
                             return (
-                                <FormItem className="col-span-1 md:col-span-1">
+                                <FormItem className="col-span-2 md:col-span-1">
                                     <FormLabel>Cargo na célula</FormLabel>
                                     <FormControl>
                                         <Select
@@ -268,7 +268,7 @@ export default function Cadastro() {
                         control={form.control}
                         name="telefone"
                         render={({ field }) => (
-                            <FormItem className="col-span-1 md:col-span-1">
+                            <FormItem className="col-span-2 md:col-span-1">
                                 <FormLabel>Telefone</FormLabel>
                                 <FormControl>
                                     <Input
@@ -359,7 +359,7 @@ export default function Cadastro() {
                     <div className="md:col-span-3">
                         <Button
                             type="submit"
-                            className=" mt-5 rounded-lg w-full bg-slate-400 hover:bg-slate-700 text-white text-md"
+                            className=" mt-5 rounded-lg w-full text-md"
                         >
                             {isEdit ? 'Salvar': 'Cadastrar'}
                         </Button>

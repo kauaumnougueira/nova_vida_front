@@ -22,7 +22,7 @@ function App() {
         < >
             <Header toggleNavbar={toggleNavbar} />
             <Navbar isOpen={isNavbarOpen} closeNavbar={closeNavbar} />
-            <div className="flex w-full items-center justify-center px-5 md:px-6">
+            <div className="bg-gray-100 flex w-full items-center justify-center px-5 md:px-6 pt-28">
                 <Routes>
                     <Route path="/cadastrar-membro" element={<Cadastro />} />
                     <Route path="/visualizar-membros" element={<Tabela />} />

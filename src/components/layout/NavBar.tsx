@@ -29,7 +29,7 @@ const NavItem = ({
 }: NavProps) => (
     <Link
         to={to}
-        className={`flex items-center gap-3 rounded-lg px-4 py-2 font-medium transition-colors duration-150 hover:bg-slate-700 rounded-tr-full rounded-br-full  hover:text-white hover:shadow-xl dark:hover:bg-gray-800 dark:hover:text-white ${className}`}
+        className={`flex items-center gap-3 rounded-lg px-4 py-2 font-medium transition-colors duration-150 hover:bg-purple-900 rounded-tr-full rounded-br-full  hover:text-white hover:shadow-xl dark:hover:bg-gray-800 dark:hover:text-white ${className}`}
         aria-label={typeof children === "string" ? children : undefined}
         onClick={closeNavbar} // Close the navbar when an item is clicked
     >
