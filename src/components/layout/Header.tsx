@@ -12,7 +12,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ toggleNavbar }) => {
     const menus = [
         { nome: 'Home', to: '/' },
-        { nome: 'Sobre A Célula', to: '/sobre' },
+        { nome: 'Sobre a célula', to: '/sobre' },
         { nome: 'Igreja', to: '/igreja' },
     ];
 

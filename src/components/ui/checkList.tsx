@@ -88,7 +88,7 @@ const CheckContent: React.FC<CheckContentProps> = ({
                         setBg(!bg);
                     }}
                     id={id.toString()}
-                    className="form-checkbox h-5 w-5 text-blue-600 rounded focus:ring-0 items-center ml-5"
+                    className="form-checkbox h-5 w-5 text-purple-900 rounded focus:ring-0 items-center ml-5"
                 />
             </TableCell>
             <TableCell>

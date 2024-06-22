@@ -567,16 +567,24 @@ export default function CadastroRelatorio() {
                         render={({ field }) => {
                             // Encontre o nome do cargo correspondente ao id selecionado
                             const selectedMembro = membros.find(
-                                (c) => c.id === field.value
+                                (membro) => membro.id === field.value
                             );
+
                             return (
                                 <FormItem className="col-span-4 md:col-span-2">
                                     <FormLabel>Pregador</FormLabel>
                                     <FormControl>
                                         <Select
-                                            value={field.value?.toString()} // Converte o valor do ID para string
+                                            value={
+                                                field.value?.toString() ||
+                                                "none"
+                                            }
                                             onValueChange={(value) => {
-                                                field.onChange(parseInt(value));
+                                                field.onChange(
+                                                    value === "none"
+                                                        ? null
+                                                        : parseInt(value, 10)
+                                                );
                                             }}
                                             name={field.name}
                                         >
@@ -590,20 +598,21 @@ export default function CadastroRelatorio() {
                                                 <SelectValue placeholder="Selecione um membro">
                                                     {selectedMembro
                                                         ? selectedMembro.nome
-                                                        : ""}
+                                                        : "Selecione um membro"}
                                                 </SelectValue>
                                             </SelectTrigger>
                                             <SelectContent className="bg-white">
-                                                {membros.map(
-                                                    (membro, index) => (
-                                                        <SelectItem
-                                                            key={index}
-                                                            value={membro.id.toString()} // Usa o ID como valor
-                                                        >
-                                                            {membro.nome}
-                                                        </SelectItem>
-                                                    )
-                                                )}
+                                                <SelectItem value="none">
+                                                    Nenhum pregador
+                                                </SelectItem>
+                                                {membros.map((membro) => (
+                                                    <SelectItem
+                                                        key={membro.id}
+                                                        value={membro.id.toString()}
+                                                    >
+                                                        {membro.nome}
+                                                    </SelectItem>
+                                                ))}
                                             </SelectContent>
                                         </Select>
                                     </FormControl>
@@ -612,7 +621,6 @@ export default function CadastroRelatorio() {
                             );
                         }}
                     />
-
                     <FormField
                         control={form.control}
                         name="observacao"
