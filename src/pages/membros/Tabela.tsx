@@ -29,14 +29,20 @@ import { Input } from "@/components/ui/input";
 import { Titulo } from "@/components/interativos/texts";
 import { toast } from "sonner";
 
-interface Membro {
+type Membro = {
     id: number;
-    cargos: [{ nome: string }];
     nome: string;
+    endereco: string;
     telefone: string;
     data_conversao: string;
-    endereco: string;
-}
+    data_inicio_celula: string | null;
+    aniversario: string;
+    ativo: number;
+    celula_id: number;
+    nome_celula: string;
+    cargos: { nome: string; }[];
+    reunioes_como_pregador: any[]; // Ajuste de acordo com o tipo apropriado
+};
 
 const Tabela = () => {
     const [membros, setMembros] = useState<Membro[]>([]);
@@ -56,6 +62,210 @@ const Tabela = () => {
             }
         } catch (error) {
             console.error("Error fetching membros:", error);
+            const teste = [
+                {
+                    id: 1,
+                    nome: "Pedro Rocha Boucinhas Pacheco",
+                    endereco:
+                        "Planalto Turu III, Rua Centro-Oeste, Quadra 02, Casa 42",
+                    telefone: "(98) 99968-1429",
+                    data_conversao: "2022.1",
+                    data_inicio_celula: null,
+                    aniversario: "27/11/2001",
+                    ativo: 1,
+                    celula_id: 1,
+                    nome_celula: "Célula Nova Vida",
+                    cargos: [
+                        {
+                            
+                            nome: "Anfitrião",
+
+                        },
+                    ],
+                    reunioes_como_pregador: [],
+                },
+                {
+                    id: 2,
+                    nome: "Lucas Batista dos Santos",
+                    endereco: "turu",
+                    telefone: "(98) 99968-4165",
+                    data_conversao: "2022.1",
+                    data_inicio_celula: null,
+                    aniversario: "24/11/2001",
+                    ativo: 1,
+                    celula_id: 1,
+                    nome_celula: "Célula Nova Vida",
+                    cargos: [
+                        {
+                           
+                            nome: "líder",
+
+                        },
+                    ],
+                    reunioes_como_pregador: [],
+                },
+                {
+                    id: 4,
+                    nome: "Pedro Vinicius de Almeida Sousa",
+                    endereco: "turu",
+                    telefone: "(98) 98135-4839",
+                    data_conversao: "2022.1",
+                    data_inicio_celula: null,
+                    aniversario: "10/11/2008",
+                    ativo: 1,
+                    celula_id: 1,
+                    nome_celula: "Célula Nova Vida",
+                    cargos: [
+                        {
+                            
+                            nome: "Membro",
+
+                        },
+                    ],
+                    reunioes_como_pregador: [],
+                },
+                {
+                    id: 5,
+                    nome: "Isaque Pinheiro Castro",
+                    endereco: "turu",
+                    telefone: "(98) 98721-3542",
+                    data_conversao: "2022.1",
+                    data_inicio_celula: null,
+                    aniversario: "08/01/2008",
+                    ativo: 1,
+                    celula_id: 1,
+                    nome_celula: "Célula Nova Vida",
+                    cargos: [
+                        {
+                           
+                            nome: "Membro",
+
+                        },
+                    ],
+                    reunioes_como_pregador: [],
+                },
+                {
+                    id: 6,
+                    nome: "João Felipe Maia Lisboa",
+                    endereco: "turu",
+                    telefone: "(98) 97005-2301",
+                    data_conversao: "2022.1",
+                    data_inicio_celula: null,
+                    aniversario: "23/06/2007",
+                    ativo: 1,
+                    celula_id: 1,
+                    nome_celula: "Célula Nova Vida",
+                    cargos: [
+                        {
+                            
+                            nome: "Membro",
+
+                        },
+                    ],
+                    reunioes_como_pregador: [],
+                },
+                {
+                    id: 7,
+                    nome: "Thiago Itallo Pinheiro Batista",
+                    endereco: "turu",
+                    telefone: "(98) 99153-5413",
+                    data_conversao: "2022.1",
+                    data_inicio_celula: null,
+                    aniversario: "12/03/2007",
+                    ativo: 1,
+                    celula_id: 1,
+                    nome_celula: "Célula Nova Vida",
+                    cargos: [
+                        {
+                           
+                            nome: "secretário",
+
+                        },
+                    ],
+                    reunioes_como_pregador: [],
+                },
+                {
+                    id: 8,
+                    nome: "Francesco Marques Silva",
+                    endereco: "turu",
+                    telefone: "(98) 97019-0326",
+                    data_conversao: "2024.1",
+                    data_inicio_celula: null,
+                    aniversario: "04/03/2007",
+                    ativo: 1,
+                    celula_id: 1,
+                    nome_celula: "Célula Nova Vida",
+                    cargos: [
+                        {
+                          
+                            nome: "Membro",
+
+                        },
+                    ],
+                    reunioes_como_pregador: [],
+                },
+                {
+                    id: 9,
+                    nome: "Carlos Eduardo Lages Sousa Junior",
+                    endereco: "turu",
+                    telefone: "(98) 99268-4483",
+                    data_conversao: "2022.1",
+                    data_inicio_celula: null,
+                    aniversario: "18/11/2008",
+                    ativo: 1,
+                    celula_id: 1,
+                    nome_celula: "Célula Nova Vida",
+                    cargos: [
+                        {
+                           
+                            nome: "Membro",
+
+                        },
+                    ],
+                    reunioes_como_pregador: [],
+                },
+                {
+                    id: 10,
+                    nome: "Guilherme Brandão Leite Siqueira",
+                    endereco: "turu",
+                    telefone: "(99) 98460-8987",
+                    data_conversao: "2022.1",
+                    data_inicio_celula: null,
+                    aniversario: "20/05/2008",
+                    ativo: 1,
+                    celula_id: 1,
+                    nome_celula: "Célula Nova Vida",
+                    cargos: [
+                        {
+                           
+                            nome: "Membro",
+
+                        },
+                    ],
+                    reunioes_como_pregador: [],
+                },
+                {
+                    id: 11,
+                    nome: "Kaua Nogueira Araujo",
+                    endereco: "rua 13 quadra 8 casa 23, vinhais",
+                    telefone: "(98) 98715-3564",
+                    data_conversao: "2017.1",
+                    data_inicio_celula: null,
+                    aniversario: "05/02/2004",
+                    ativo: 1,
+                    celula_id: 1,
+                    nome_celula: "Célula Nova Vida",
+                    cargos: [
+                        {
+                           
+                            nome: "vice-líder",
+
+                        },
+                    ],
+                    reunioes_como_pregador: [],
+                },
+            ];
+            setMembros(teste);
         }
     }, []);
 
